@@ -1,0 +1,170 @@
+{% load crispy_forms_filters %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> Event Booking</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <style>
+        body{
+            font-family:Arial, Helvetica, sans-serif;
+            font-size:1.3em;
+            background-image: url('/static/mandalas.jpg');
+            margin:auto;
+            position: relative;
+            height: 100vh;
+        }
+
+        .container{
+            background:white;
+            padding:20px;
+            margin:auto;
+            border-radius:20px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity:0.95;
+        }
+
+        .form-items{
+            text-align:center;
+            color:orange;
+            position: static;
+            top: 50%;
+            left: 50%;
+
+        }
+        .actual-form{
+            color:blue
+            background-color:white
+        }
+
+        .form-group, button{
+            margin-top:10px;
+        }
+
+        @media only screen and (max-width: 768px) {
+            /* For mobile phones: */
+            .container{
+                background:white;
+                padding:20px;
+                margin:auto;
+                border-radius:20px;
+                position: absolute;
+                top: 30%;
+                left: 30%;
+                transform: translate(-50%, -50%);
+                opacity:0.95;
+            }
+        }
+    </style>
+
+</head>
+<body>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-6 col-md-4 col-sm-4 form-items">
+                <div>
+                    <div class="form_logo">
+                        <img src="{% static 'TrainingLogo.png'%}" alt="Trainconsult Management Logo" height="100px" width="150">
+                    </div>
+                    <div class="form_heading">
+                        <h3>Events Booking</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-md-8 col-sm-8">
+                <div class="actual-form">
+                    <form action="{% url 'book_event' %}" method="post">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <div class="form-control">
+                                        {{ form.event|as_crispy_field }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <div class="form-control">
+                                        {{ form.attendance_mode|as_crispy_field }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6 col-md-6 col-sm-6">
+                                <div class="form-group">
+                                    <div class="form-control">
+                                        {{ form.first_name|as_crispy_field }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-6 col-sm-6">
+                                <div class="form-group">
+                                    <div class="form-control">
+                                        {{ form.last_name|as_crispy_field }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row" id="organization" style="display:none;">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <div class="form-control">{{ form.organization|as_crispy_field }}</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row" id="student_school" style="display:none;">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <div class="form-control">{{ form.university|as_crispy_field }}</div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <div class="form-control">{{ form.year_of_study|as_crispy_field }}</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-6 col-md-6 col-sm-6">
+                                <div class="form-group">
+                                    <div class="form-control">{{ form.email_address|as_crispy_field }}</div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-6 col-sm-6">
+                                <div class="form-group">
+                                    <div class="form-control">{{ form.phone_number|as_crispy_field }}</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <div class="form-control">{{ form.currency|as_crispy_field }}</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <input class="btn btn-success" type="submit" value="submit"/>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+            crossorigin="anonymous"></script>
+<script src="{% static 'main.js' %}"></script>
+</body>
+</html>

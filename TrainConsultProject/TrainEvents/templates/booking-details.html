@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Client Booking Details</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <div>
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <h3>Trainconsult Management</h3>
+                </div>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> {{ username }}</a></li>
+                    <li><a href="{% url 'user_logout' %}"><span class="glyphicon glyphicon-log-in"></span>Log Out</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+    <div class="container">
+        <div class="card card-body">
+            <h3>{{ data.first_name }} {{ data.last_name }}</h3>
+            <p><b>Email: </b> {{ data.email_address }}</p>
+            <p><b>Phone Number: </b> {{ data.phone_number }}</p>
+            <p><b>Mode of Attendance: </b> {{ data.attendance_mode }}</p>
+            <p><b>Organization: </b> {{ data.organization }}</p>
+            <p><b>Event: </b> {{ data.event }}</p>
+            <p><b>Date of Booking: </b> {{ data.date_booking }}</p>
+        </div>
+        </br>
+        <div class="card card-body">
+            <a class="btn btn-info btn-sm" href="/confirm-booking/{{ data.id }}">Confirm Appointment</a>
+            </br>
+            <a class="btn btn-warning btn-sm" href="#">Cancel Appointment</a>
+        </div>
+    </div>
+
+</body>
+</html>
